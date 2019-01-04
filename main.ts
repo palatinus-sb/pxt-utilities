@@ -1,7 +1,8 @@
 /**
 * Some utilities
 */
-//% weight=100 color=#00cc96 icon="\uf017" block="Utilities"
+//% weight=50 color=#ff9900 icon="\uf12e" block="Utilities"
+//% advanced=true
 namespace utilities {
     /**
      * Draws a little boot animation
