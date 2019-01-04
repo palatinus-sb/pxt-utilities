@@ -1,7 +1,7 @@
 /**
 * Some utilities
 */
-//% weight=50 color=#ff9900 icon="\uf12e" block="Utilities"
+//% weight=100 color=#ff9900 icon="\uf12e" block="Utilities"
 //% advanced=true
 namespace utilities {
     /**
