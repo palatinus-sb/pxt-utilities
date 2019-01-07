@@ -18,9 +18,9 @@ namespace utilities {
                     led.plot(i, j)
                 }
             }
-            basic.pause(200)
+            basic.pause(500-i*25)
         }
-        basic.pause(500)
+        basic.pause(750)
         basic.clearScreen()
     }
 
