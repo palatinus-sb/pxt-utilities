@@ -4,6 +4,10 @@
 //% weight=100 color=#ff9900 icon="\uf12e" block="Utilities"
 //% advanced=true
 namespace utilities {
+    let redPin: AnalogPin = null
+    let greenPin: AnalogPin = null
+    let bluePin: AnalogPin = null
+
     /**
      * Draws a little boot animation
      */
@@ -18,10 +22,31 @@ namespace utilities {
                     led.plot(i, j)
                 }
             }
-            basic.pause(600-i*50)
+            basic.pause(600 - i * 50)
         }
         basic.pause(750)
         basic.clearScreen()
+    }
+
+    /**
+     * Creates an RGB Led interface on the specified pins
+     */
+    //% block
+    export function CreateRGB(red: AnalogPin, green: AnalogPin, blue: AnalogPin): void {
+        redPin = red
+        greenPin = green
+        bluePin = blue
+    }
+
+    /**
+     * Sets the RGB Led to a specific color (red, green, blue)
+     */
+    //% block
+    export function RGBLed(red: number = 0, green: number = 0, blue: number = 0): void {
+        if (redPin == null || greenPin == null || bluePin == null) return
+        pins.analogWritePin(redPin, red)
+        pins.analogWritePin(greenPin, green)
+        pins.analogWritePin(bluePin, blue)
     }
 
     /**
