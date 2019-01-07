@@ -10,15 +10,15 @@ namespace utilities {
     //% block
     export function BootAnimation(mode: string = ""): void {
         led.enable(true)
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 4; j++) {
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
                 if (!(mode == "left")) {
                     led.plot(j, 4 - i)
                 } else {
                     led.plot(i, j)
                 }
             }
-            basic.pause(100)
+            basic.pause(200)
         }
         basic.pause(500)
         basic.clearScreen()
