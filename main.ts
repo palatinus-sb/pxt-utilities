@@ -42,11 +42,11 @@ namespace utilities {
      * Sets the RGB Led to a specific color (red, green, blue)
      */
     //% block
-    export function RGBLed(red: number = 0, green: number = 0, blue: number = 0): void {
+    export function RGBLed(red: number = -1, green: number = -1, blue: number = -1): void {
         if (redPin == null || greenPin == null || bluePin == null) return
-        pins.analogWritePin(redPin, red)
-        pins.analogWritePin(greenPin, green)
-        pins.analogWritePin(bluePin, blue)
+        if (red != -1) pins.analogWritePin(redPin, red)
+        if (green != -1) pins.analogWritePin(greenPin, green)
+        if (blue != -1) pins.analogWritePin(bluePin, blue)
     }
 
     /**
