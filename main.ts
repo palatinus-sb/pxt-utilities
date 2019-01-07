@@ -20,7 +20,7 @@ namespace utilities {
             }
             basic.pause(600-i*25)
         }
-        basic.pause(1000)
+        basic.pause(800)
         basic.clearScreen()
     }
 
