@@ -28,7 +28,7 @@ namespace utilities {
      * Draws an indicator of where you are on a 0-4 scale
      */
     //% block
-    function TabDots(num: number): void {
+    export function TabDots(num: number): void {
         for (let index = 0; index < 5; index++) {
             if (index == num) {
                 led.plotBrightness(0, index, 255)
