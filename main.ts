@@ -8,7 +8,7 @@ namespace utilities {
      * Draws a little boot animation
      */
     //% block
-    export function BootAnimation(mode: string): void {
+    export function BootAnimation(mode: string = ""): void {
         led.enable(true)
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 4; j++) {
