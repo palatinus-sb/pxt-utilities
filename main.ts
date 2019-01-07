@@ -8,49 +8,34 @@ namespace utilities {
      * Draws a little boot animation
      */
     //% block
-    export function BootAnimation(): void {
+    export function BootAnimation(mode: string): void {
         led.enable(true)
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            # # # # #
-            `)
-        basic.pause(100)
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            # # # # #
-            # # # # #
-            `)
-        basic.pause(100)
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            # # # # #
-            # # # # #
-            # # # # #
-            `)
-        basic.pause(100)
-        basic.showLeds(`
-            . . . . .
-            # # # # #
-            # # # # #
-            # # # # #
-            # # # # #
-            `)
-        basic.pause(100)
-        basic.showLeds(`
-            # # # # #
-            # # # # #
-            # # # # #
-            # # # # #
-            # # # # #
-            `)
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                if (!(mode == "left")) {
+                    led.plot(j, 4 - i)
+                } else {
+                    led.plot(i, j)
+                }
+            }
+            basic.pause(100)
+        }
         basic.pause(500)
         basic.clearScreen()
+    }
+
+    /**
+     * Draws an indicator of where you are on a 0-4 scale
+     */
+    //% block
+    function TabDots(num: number): void {
+        for (let index = 0; index < 5; index++) {
+            if (index == num) {
+                led.plotBrightness(0, index, 255)
+            } else {
+                led.plotBrightness(0, index, 10)
+            }
+        }
     }
 
     /**
@@ -58,7 +43,7 @@ namespace utilities {
      * (has 12 animation stages)
      */
     //% block
-    export function Compass() {
+    export function DrawCompass() {
         if (input.compassHeading() >= 352.5 || input.compassHeading() < 7.5) {
             basic.showLeds(`
                 . . # . .
