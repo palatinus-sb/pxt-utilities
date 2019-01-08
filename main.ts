@@ -4,9 +4,11 @@
 //% weight=100 color=#ff9900 icon="\uf12e" block="Utilities"
 //% advanced=true
 namespace utilities {
-    let redPin: AnalogPin = null
-    let greenPin: AnalogPin = null
-    let bluePin: AnalogPin = null
+    let analogRed: AnalogPin = null
+    let analogGreen: AnalogPin = null
+    let analogBlue: AnalogPin = null
+
+    let digitalRed: DigitalPin = null
 
     /**
      * Draws a little boot animation
@@ -33,20 +35,21 @@ namespace utilities {
      */
     //% block
     export function CreateRGB(red: AnalogPin, green: AnalogPin, blue: AnalogPin): void {
-        redPin = red
-        greenPin = green
-        bluePin = blue
+        analogRed = red
+        analogGreen = green
+        analogBlue = blue
     }
 
     /**
      * Sets the RGB Led to a specific color (red, green, blue)
+     * takes from 0 to 255, -1 if you don't want to change it
      */
     //% block
-    export function RGBLed(red: number = -1, green: number = -1, blue: number = -1): void {
-        if (redPin == null || greenPin == null || bluePin == null) return
-        if (red != -1) pins.analogWritePin(redPin, red)
-        if (green != -1) pins.analogWritePin(greenPin, green)
-        if (blue != -1) pins.analogWritePin(bluePin, blue)
+    export function RGBLed(red: number, green: number, blue: number): void {
+        if (analogRed == null || analogGreen == null || analogBlue == null) return
+        if (red != -1) pins.analogWritePin(analogRed, red)
+        if (green != -1) pins.analogWritePin(analogGreen, green)
+        if (blue != -1) pins.analogWritePin(analogBlue, blue)
     }
 
     /**
