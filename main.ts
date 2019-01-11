@@ -44,6 +44,25 @@ namespace utilities {
         basic.clearScreen()
     }
     /**
+     * Draws a little boot animation
+     */
+    //% block
+    export function BootAnimation2(): void {
+        led.enable(true)
+        for (let i = 0; i < 5; i++) {
+            led.plotBrightness(1, i, 255)
+            led.plotBrightness(3, i, 255)
+        }
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 256; j++) {
+                led.plotBrightness(2, i, j)
+                basic.pause(1)
+            }
+        }
+        basic.pause(750)
+        basic.clearScreen()
+    }
+    /**
      * Draws an indicator of where you are on a 0-4 scale
      */
     //% block
