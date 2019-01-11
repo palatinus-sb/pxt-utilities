@@ -54,7 +54,7 @@ namespace utilities {
             led.plotBrightness(3, i, 255)
         }
         for (let i = 0; i < 5; i++) {
-            for (let j = 0; j < 256; j++) {
+            for (let j = 1; j < 255; j += 2) {
                 led.plotBrightness(2, i, j)
                 basic.pause(1)
             }
