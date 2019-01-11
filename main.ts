@@ -8,13 +8,11 @@ namespace utilities {
         red: AnalogPin
         green: AnalogPin
         blue: AnalogPin
-
         constructor(r: AnalogPin, g: AnalogPin, b: AnalogPin) {
             this.red = r
             this.green = g
             this.blue = b
         }
-
         /**
          * Sets the RGB Led to a specific color (red, green, blue)
          * takes from 0 to 255, -1 if you don't want to change it
@@ -26,7 +24,6 @@ namespace utilities {
             if (b != -1) pins.analogWritePin(this.blue, b)
         }
     }
-
     /**
      * Draws a little boot animation
      */
@@ -46,7 +43,6 @@ namespace utilities {
         basic.pause(750)
         basic.clearScreen()
     }
-
     /**
      * Draws an indicator of where you are on a 0-4 scale
      */
@@ -60,7 +56,6 @@ namespace utilities {
             }
         }
     }
-
     /**
      * Draws a compass on the micro:bit screen
      * (has 12 animation stages)
