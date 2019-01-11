@@ -4,11 +4,28 @@
 //% weight=100 color=#ff9900 icon="\uf12e" block="Utilities"
 //% advanced=true
 namespace utilities {
-    let analogRed: AnalogPin = null
-    let analogGreen: AnalogPin = null
-    let analogBlue: AnalogPin = null
+    class RGBLed {
+        red: AnalogPin
+        green: AnalogPin
+        blue: AnalogPin
 
-    let digitalRed: DigitalPin = null
+        constructor(r: AnalogPin, g: AnalogPin, b: AnalogPin) {
+            this.red = r
+            this.green = g
+            this.blue = b
+        }
+
+        /**
+         * Sets the RGB Led to a specific color (red, green, blue)
+         * takes from 0 to 255, -1 if you don't want to change it
+         */
+        //% block
+        SetClolor(r: number, g: number, b: number) {
+            if (r != -1) pins.analogWritePin(this.red, r)
+            if (g != -1) pins.analogWritePin(this.green, g)
+            if (b != -1) pins.analogWritePin(this.blue, b)
+        }
+    }
 
     /**
      * Draws a little boot animation
@@ -28,28 +45,6 @@ namespace utilities {
         }
         basic.pause(750)
         basic.clearScreen()
-    }
-
-    /**
-     * Creates an RGB Led interface on the specified pins
-     */
-    //% block
-    export function CreateRGB(red: AnalogPin, green: AnalogPin, blue: AnalogPin): void {
-        analogRed = red
-        analogGreen = green
-        analogBlue = blue
-    }
-
-    /**
-     * Sets the RGB Led to a specific color (red, green, blue)
-     * takes from 0 to 255, -1 if you don't want to change it
-     */
-    //% block
-    export function RGBLed(red: number, green: number, blue: number): void {
-        if (analogRed == null || analogGreen == null || analogBlue == null) return
-        if (red != -1) pins.analogWritePin(analogRed, red)
-        if (green != -1) pins.analogWritePin(analogGreen, green)
-        if (blue != -1) pins.analogWritePin(analogBlue, blue)
     }
 
     /**
