@@ -50,12 +50,9 @@ namespace utilities {
     export function BootAnimation2(): void {
         led.enable(true)
         for (let i = 0; i < 5; i++) {
-            led.plotBrightness(1, i, 25)
-            led.plotBrightness(3, i, 25)
-        }
-        for (let i = 0; i < 5; i++) {
             for (let j = 1; j < 255; j += 2) {
-                led.plotBrightness(2, i, j)
+                led.plotBrightness(0, i, j)
+                led.plotBrightness(1, i, j)
                 basic.pause(1)
             }
         }
