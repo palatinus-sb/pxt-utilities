@@ -117,7 +117,7 @@ namespace utilities {
      * Returns true if the parameter string only contains numbers
      */
     //% block
-    function isNumber(s: string): boolean {
+    export function isNumber(s: string): boolean {
         const n = "0123456789"
         for (let i = 0; i < s.length; i++) {
             let b = false
