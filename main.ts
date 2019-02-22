@@ -1,3 +1,11 @@
+enum Animation {
+    Welcome,
+    FillHorizontal,
+    FillVertical,
+    BarHorizontal,
+    BarVertical,
+    ProgressBar
+}
 /**
 * Some utilities
 */
@@ -13,64 +21,202 @@ namespace utilities {
             this.green = g
             this.blue = b
         }
-        /**
-         * Sets the RGB Led to a specific color (red, green, blue)
-         * takes from 0 to 255, -1 if you don't want to change it
-         */
-        //% block
         SetClolor(r: number, g: number, b: number) {
-            if (r != -1) pins.analogWritePin(this.red, r)
-            if (g != -1) pins.analogWritePin(this.green, g)
-            if (b != -1) pins.analogWritePin(this.blue, b)
+            if (r >= 0 && r < 256) pins.analogWritePin(this.red, r)
+            if (r >= 0 && r < 256) pins.analogWritePin(this.green, g)
+            if (r >= 0 && r < 256) pins.analogWritePin(this.blue, b)
         }
     }
-    /**
-     * Draws a little boot animation
-     */
-    //% block
-    export function BootAnimation(mode: string = ""): void {
-        led.enable(true)
-        for (let i = 0; i < 5; i++) {
-            for (let j = 0; j < 5; j++) {
-                if (!(mode == "left")) {
-                    led.plot(j, 4 - i)
-                } else {
-                    led.plot(i, j)
+    export class iLED {
+        leds: number[][]
+        constructor() {
+            for (let i = 0; i < 5; i++) {
+                for (let j = 0; j < 5; j++) {
+                    this.leds[i][j] = 0
                 }
             }
-            basic.pause(600 - i * 50)
+            basic.clearScreen()
         }
-        basic.pause(750)
-        basic.clearScreen()
+        GetBrightness(h: number, v: number): number {
+            return this.leds[h][v]
+        }
+        SetBrightness(h: number, v: number, b: number): void {
+            this.leds[h][v] = b
+            led.plotBrightness(h, v, b)
+        }
     }
     /**
      * Draws a little boot animation
      */
     //% block
-    export function BootAnimation2(): void {
+    export function BootAnimation(anim: Animation): void {
         led.enable(true)
-        for (let i = 0; i < 5; i++) {
-            for (let j = 1; j < 255; j += 2) {
-                led.plotBrightness(0, i, j)
-                led.plotBrightness(1, i, j)
-                basic.pause(1)
+        if (anim == Animation.Welcome) {
+            basic.showString("W")
+            basic.showString("e")
+            basic.showString("l")
+            basic.showString("c")
+            basic.showString("o")
+            basic.showString("m")
+            basic.showString("e")
+            basic.showString("!")
+        } else if (anim == Animation.FillHorizontal) {
+            for (let i = 0; i < 5; i++) {
+                for (let k = 1; k < 256; k++) {
+                    for (let j = 0; j < 5; j++) {
+                        led.plotBrightness(j, 4 - i, k)
+                    }
+                    basic.pause(10 - i * 2)
+                }
+                basic.pause(1 / Math.pow(2, i) * 250)
+            }
+        } else if (anim == Animation.FillVertical) {
+            for (let i = 0; i < 5; i++) {
+                for (let k = 1; k < 256; k++) {
+                    for (let j = 0; j < 5; j++) {
+                        led.plotBrightness(i, j, k)
+                    }
+                    basic.pause(10 - i * 2)
+                }
+                basic.pause(1 / Math.pow(2, i) * 250)
+            }
+        } else if (anim == Animation.BarHorizontal) {
+            for (let i = 0; i < 5; i++) {
+                for (let j = 1; j < 256; j++) {
+                    led.plotBrightness(i, 3, j)
+                    led.plotBrightness(i, 4, j)
+                    basic.pause(10 - i * 2)
+                }
+            }
+        } else if (anim == Animation.BarVertical) {
+            for (let i = 0; i < 5; i++) {
+                for (let j = 1; j < 256; j++) {
+                    led.plotBrightness(0, i, j)
+                    led.plotBrightness(1, i, j)
+                    basic.pause(10 - i * 2)
+                }
+            }
+        } else if (anim == Animation.ProgressBar) {
+            for (let i = 1; i < 256; i += 5) {
+                for (let j = 0; j < 5; j++) {
+                    led.plotBrightness(j, 1, i)
+                    led.plotBrightness(j, 3, i)
+                }
+                basic.pause(20)
+            }
+            basic.pause(100)
+            for (let i = 0; i < 5; i++) {
+                for (let j = 1; j < 256; j++) {
+                    led.plotBrightness(i, 2, j)
+                    basic.pause(5)
+                }
             }
         }
         basic.pause(750)
         basic.clearScreen()
     }
     /**
-     * Draws an indicator of where you are on a 0-4 scale
+     * Returns the minimum value of a number array
      */
     //% block
-    export function TabDots(num: number): void {
-        for (let index = 0; index < 5; index++) {
-            if (index == num) {
-                led.plotBrightness(0, index, 255)
-            } else {
-                led.plotBrightness(0, index, 10)
+    export function arrayMin(l: number[]): number {
+        let m = l[0]
+        for (let i = 1; i < l.length; i++) {
+            if (l[i] < m) {
+                m = l[i]
             }
         }
+        return m
+    }
+    /**
+     * Returns the maximum value of a number array
+     */
+    //% block
+    export function arrayMax(l: number[]): number {
+        let m = l[0]
+        for (let i = 1; i < l.length; i++) {
+            if (l[i] > m) {
+                m = l[i]
+            }
+        }
+        return m
+    }
+    /**
+     * Returns the average value of a number array
+     */
+    //% block
+    export function arrayAvg(l: number[]): number {
+        let s = 0
+        for (let i = 0; i < l.length; i++) {
+            s += l[i]
+        }
+        return s / l.length
+    }
+    /**
+     * Represents the temperature on a 0-14 scale
+     * (useful for smaller bars or indicators)
+     */
+    //% block
+    export function TemperatureScale() {
+        let temp = input.temperature() - 1
+        let num = 0
+        if (temp <= -1)
+            num = 0
+        else if (temp <= 5)
+            num = 1
+        else if (temp <= 9)
+            num = 2
+        else if (temp <= 12)
+            num = 3
+        else if (temp <= 15)
+            num = 4
+        else if (temp <= 18)
+            num = 5
+        else if (temp <= 20)
+            num = 6
+        else if (temp <= 22)
+            num = 7
+        else if (temp <= 24)
+            num = 8
+        else if (temp <= 27)
+            num = 9
+        else if (temp <= 30)
+            num = 10
+        else if (temp <= 35)
+            num = 11
+        else if (temp <= 40)
+            num = 12
+        else if (temp <= 45)
+            num = 13
+        else
+            num = 14;
+        return num
+    }
+    /**
+     * Returns the direction that the Micro:bit's faced
+     * e.g. North, North-East, ...
+     */
+    //% block
+    export function CompassDirection() {
+        let heading = input.compassHeading()
+        let str = ""
+        if (heading >= 337.5 || heading < 22.5)
+            str = "North"
+        else if (heading >= 22.5 && heading < 67.5)
+            str = "North-East"
+        else if (heading >= 67.5 && heading < 112.5)
+            str = "East"
+        else if (heading >= 112.5 && heading < 157.5)
+            str = "South-East"
+        else if (heading >= 157.5 && heading < 202.5)
+            str = "South"
+        else if (heading >= 202.5 && heading < 247.5)
+            str = "South-West"
+        else if (heading >= 247.5 && heading < 292.5)
+            str = "West"
+        else if (heading >= 292.5 && heading < 337.5)
+            str = "North-West"
+        return str
     }
     /**
      * Draws a compass on the micro:bit screen
