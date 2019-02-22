@@ -7,6 +7,9 @@ enum Animation {
     BarVertical,
     ProgressBar
 }
+basic.forever(function () {
+    utilities.DrawCompass()
+})
 /**
 * Some utilities
 */
@@ -213,197 +216,125 @@ namespace utilities {
     //% block
     export function DrawCompass() {
         if (input.compassHeading() >= 352.5 || input.compassHeading() < 7.5) {
-            basic.showLeds(`
-                . . # . .
-                . . # . .
-                . . # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(2, 0)
+            led.plot(2, 1)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 7.5 && input.compassHeading() < 22.5) {
-            basic.showLeds(`
-                . # . . .
-                . . # . .
-                . . # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(1, 0)
+            led.plot(2, 1)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 22.5 && input.compassHeading() < 37.5) {
-            basic.showLeds(`
-                . # . . .
-                . # . . .
-                . . # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(1, 0)
+            led.plot(1, 1)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 37.5 && input.compassHeading() < 52.5) {
-            basic.showLeds(`
-                # . . . .
-                . # . . .
-                . . # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(0, 0)
+            led.plot(1, 1)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 52.5 && input.compassHeading() < 67.5) {
-            basic.showLeds(`
-                . . . . .
-                # # . . .
-                . . # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(0, 1)
+            led.plot(1, 1)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 67.5 && input.compassHeading() < 82.5) {
-            basic.showLeds(`
-                . . . . .
-                # . . . .
-                . # # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(0, 1)
+            led.plot(1, 2)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 82.5 && input.compassHeading() < 97.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                # # # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(0, 2)
+            led.plot(1, 2)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 97.5 && input.compassHeading() < 112.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . # # . .
-                # . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(0, 3)
+            led.plot(1, 2)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 112.5 && input.compassHeading() < 127.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # . .
-                # # . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(0, 3)
+            led.plot(1, 3)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 127.5 && input.compassHeading() < 142.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # . .
-                . # . . .
-                # . . . .
-                `)
+            basic.clearScreen()
+            led.plot(0, 4)
+            led.plot(1, 3)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 142.5 && input.compassHeading() < 157.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # . .
-                . # . . .
-                . # . . .
-                `)
+            basic.clearScreen()
+            led.plot(1, 4)
+            led.plot(1, 3)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 157.5 && input.compassHeading() < 172.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # . .
-                . . # . .
-                . # . . .
-                `)
+            basic.clearScreen()
+            led.plot(1, 4)
+            led.plot(2, 3)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 172.5 && input.compassHeading() < 187.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # . .
-                . . # . .
-                . . # . .
-                `)
+            basic.clearScreen()
+            led.plot(2, 4)
+            led.plot(2, 3)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 187.5 && input.compassHeading() < 202.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # . .
-                . . # . .
-                . . . # .
-                `)
+            basic.clearScreen()
+            led.plot(3, 4)
+            led.plot(2, 3)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 202.5 && input.compassHeading() < 217.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # . .
-                . . . # .
-                . . . # .
-                `)
+            basic.clearScreen()
+            led.plot(3, 4)
+            led.plot(3, 3)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 217.5 && input.compassHeading() < 232.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # . .
-                . . . # .
-                . . . . #
-                `)
+            basic.clearScreen()
+            led.plot(4, 4)
+            led.plot(3, 3)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 232.5 && input.compassHeading() < 247.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # . .
-                . . . # #
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(4, 3)
+            led.plot(3, 3)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 247.5 && input.compassHeading() < 262.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # # .
-                . . . . #
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(4, 3)
+            led.plot(3, 2)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 262.5 && input.compassHeading() < 277.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . .
-                . . # # #
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(4, 2)
+            led.plot(3, 2)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 277.5 && input.compassHeading() < 292.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . . #
-                . . # # .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(4, 1)
+            led.plot(3, 2)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 292.5 && input.compassHeading() < 307.5) {
-            basic.showLeds(`
-                . . . . .
-                . . . # #
-                . . # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(4, 1)
+            led.plot(3, 1)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 307.5 && input.compassHeading() < 322.5) {
-            basic.showLeds(`
-                . . . . #
-                . . . # .
-                . . # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(4, 0)
+            led.plot(3, 1)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 322.5 && input.compassHeading() < 337.5) {
-            basic.showLeds(`
-                . . . # .
-                . . . # .
-                . . # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(3, 0)
+            led.plot(3, 1)
+            led.plot(2, 2)
         } else if (input.compassHeading() >= 337.5 && input.compassHeading() < 352.5) {
-            basic.showLeds(`
-                . . . # .
-                . . # . .
-                . . # . .
-                . . . . .
-                . . . . .
-                `)
+            basic.clearScreen()
+            led.plot(3, 0)
+            led.plot(2, 1)
+            led.plot(2, 2)
         }
     }
 }
