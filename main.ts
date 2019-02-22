@@ -1,5 +1,6 @@
 enum Animation {
     Welcome,
+    DeviceName,
     FillHorizontal,
     FillVertical,
     BarHorizontal,
@@ -27,24 +28,6 @@ namespace utilities {
             if (r >= 0 && r < 256) pins.analogWritePin(this.blue, b)
         }
     }
-    export class iLED {
-        leds: number[][]
-        constructor() {
-            for (let i = 0; i < 5; i++) {
-                for (let j = 0; j < 5; j++) {
-                    this.leds[i][j] = 0
-                }
-            }
-            basic.clearScreen()
-        }
-        GetBrightness(h: number, v: number): number {
-            return this.leds[h][v]
-        }
-        SetBrightness(h: number, v: number, b: number): void {
-            this.leds[h][v] = b
-            led.plotBrightness(h, v, b)
-        }
-    }
     /**
      * Draws a little boot animation
      */
@@ -60,6 +43,11 @@ namespace utilities {
             basic.showString("m")
             basic.showString("e")
             basic.showString("!")
+        } else if (anim == Animation.DeviceName) {
+            let str = control.deviceName()
+            for (let i = 0; i < str.length; i++) {
+                basic.showString(str[i])
+            }
         } else if (anim == Animation.FillHorizontal) {
             for (let i = 0; i < 5; i++) {
                 for (let k = 1; k < 256; k++) {
