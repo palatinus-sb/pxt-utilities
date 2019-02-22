@@ -1,6 +1,7 @@
 enum Animation {
     Welcome,
     DeviceName,
+    Lines,
     FillHorizontal,
     FillVertical,
     BarHorizontal,
@@ -47,6 +48,15 @@ namespace utilities {
             let str = control.deviceName()
             for (let i = 0; i < str.length; i++) {
                 basic.showString(str[i])
+            }
+        } else if (anim == Animation.Lines) {
+            for (let i = 0; i < 5; i++) {
+                for (let j = 0; j < 5; j++) {
+                    led.plotBrightness(j, i, 128)
+                    basic.pause(75)
+                    led.plot(j, i)
+                    basic.pause(50)
+                }
             }
         } else if (anim == Animation.FillHorizontal) {
             for (let i = 0; i < 5; i++) {
