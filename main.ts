@@ -7,9 +7,6 @@ enum Animation {
     BarVertical,
     ProgressBar
 }
-basic.forever(function () {
-    utilities.DrawCompass()
-})
 /**
 * Some utilities
 */
