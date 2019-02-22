@@ -114,6 +114,21 @@ namespace utilities {
         basic.clearScreen()
     }
     /**
+     * Returns true if the parameter string only contains numbers
+     */
+    //% block
+    function isNumber(s: string): boolean {
+        const n = "0123456789"
+        for (let i = 0; i < s.length; i++) {
+            let b = false
+            for (let j = 0; j < n.length; j++) {
+                if (s[i] == n[j]) b = true
+            }
+            if (!b) return false
+        }
+        return true
+    }
+    /**
      * Returns the minimum value of a number array
      */
     //% block
