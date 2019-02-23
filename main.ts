@@ -202,7 +202,7 @@ namespace utilities {
         else if (temp <= 45)
             num = 13
         else
-            num = 14;
+            num = 14
         return num
     }
     /**
