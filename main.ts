@@ -5,8 +5,7 @@ enum Animation {
     FillHorizontal,
     FillVertical,
     BarHorizontal,
-    BarVertical,
-    ProgressBar
+    BarVertical
 }
 /**
 * Some utilities
@@ -14,7 +13,7 @@ enum Animation {
 //% weight=100 color=#ff9900 icon="\uf12e" block="Utilities"
 //% advanced=true
 namespace utilities {
-    export class RGBLed {
+    export class rgbLed {
         red: AnalogPin
         green: AnalogPin
         blue: AnalogPin
@@ -33,7 +32,7 @@ namespace utilities {
      * Draws a little boot animation
      */
     //% block
-    export function BootAnimation(anim: Animation): void {
+    export function bootAnimation(anim: Animation): void {
         led.enable(true)
         if (anim == Animation.Welcome) {
             basic.showString("W")
@@ -92,21 +91,6 @@ namespace utilities {
                     led.plotBrightness(0, i, j)
                     led.plotBrightness(1, i, j)
                     basic.pause(10 - i * 2)
-                }
-            }
-        } else if (anim == Animation.ProgressBar) {
-            for (let i = 1; i < 256; i += 5) {
-                for (let j = 0; j < 5; j++) {
-                    led.plotBrightness(j, 1, i)
-                    led.plotBrightness(j, 3, i)
-                }
-                basic.pause(20)
-            }
-            basic.pause(100)
-            for (let i = 0; i < 5; i++) {
-                for (let j = 1; j < 256; j++) {
-                    led.plotBrightness(i, 2, j)
-                    basic.pause(5)
                 }
             }
         }
@@ -170,7 +154,7 @@ namespace utilities {
      * (useful for smaller bars or indicators)
      */
     //% block
-    export function TemperatureScale() {
+    export function temperatureScale() {
         let temp = input.temperature() - 1
         let num = 0
         if (temp <= -1)
@@ -210,7 +194,7 @@ namespace utilities {
      * e.g. North, North-East, ...
      */
     //% block
-    export function CompassDirection() {
+    export function compassDirection(): string {
         let heading = input.compassHeading()
         let str = ""
         if (heading >= 337.5 || heading < 22.5)
@@ -236,7 +220,7 @@ namespace utilities {
      * (has 12 animation stages)
      */
     //% block
-    export function DrawCompass() {
+    export function drawCompass(): void {
         if (input.compassHeading() >= 352.5 || input.compassHeading() < 7.5) {
             basic.clearScreen()
             led.plot(2, 0)
