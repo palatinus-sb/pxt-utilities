@@ -113,43 +113,6 @@ namespace utilities {
         return true
     }
     /**
-     * Returns the minimum value of a number array
-     */
-    //% block
-    export function arrayMin(l: number[]): number {
-        let m = l[0]
-        for (let i = 1; i < l.length; i++) {
-            if (l[i] < m) {
-                m = l[i]
-            }
-        }
-        return m
-    }
-    /**
-     * Returns the maximum value of a number array
-     */
-    //% block
-    export function arrayMax(l: number[]): number {
-        let m = l[0]
-        for (let i = 1; i < l.length; i++) {
-            if (l[i] > m) {
-                m = l[i]
-            }
-        }
-        return m
-    }
-    /**
-     * Returns the average value of a number array
-     */
-    //% block
-    export function arrayAvg(l: number[]): number {
-        let s = 0
-        for (let i = 0; i < l.length; i++) {
-            s += l[i]
-        }
-        return s / l.length
-    }
-    /**
      * Represents the temperature on a 0-14 scale
      * (useful for smaller bars or indicators)
      */
@@ -342,5 +305,44 @@ namespace utilities {
             led.plot(2, 1)
             led.plot(2, 2)
         }
+    }
+}
+namespace Math {
+    /**
+     * Returns the minimum value of a number array
+     */
+    //% block
+    export function arrayMin(l: number[]): number {
+        let m = l[0]
+        for (let i = 1; i < l.length; i++) {
+            if (l[i] < m) {
+                m = l[i]
+            }
+        }
+        return m
+    }
+    /**
+     * Returns the maximum value of a number array
+     */
+    //% block
+    export function arrayMax(l: number[]): number {
+        let m = l[0]
+        for (let i = 1; i < l.length; i++) {
+            if (l[i] > m) {
+                m = l[i]
+            }
+        }
+        return m
+    }
+    /**
+     * Returns the average value of a number array
+     */
+    //% block
+    export function arrayAvg(l: number[]): number {
+        let s = 0
+        for (let i = 0; i < l.length; i++) {
+            s += l[i]
+        }
+        return s / l.length
     }
 }
